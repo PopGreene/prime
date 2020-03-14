@@ -1,5 +1,6 @@
 import itertools
 
+
 def primes():
     ps = []
     sieves = []

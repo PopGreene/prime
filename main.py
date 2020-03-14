@@ -30,8 +30,7 @@ def profile(pg, check):
     last = next(itertools.islice(pg, check-1, check))
     pr.disable()
     s = io.StringIO()
-    sortby = pstats.SortKey.CUMULATIVE
-    ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+    ps = pstats.Stats(pr, stream=s).sort_stats(pstats.SortKey.CUMULATIVE)
     ps.print_stats()
     print(s.getvalue())
     assert last == table[check-1]
@@ -39,9 +38,8 @@ def profile(pg, check):
 def main():
     pass
 
-    #timeitall(prime_divide.primes(), 212, "Divide")
-
-    #profile(prime_divide.primes(), 1)
+    timeitall(prime_divide.primes(), 10000, "Divide")
+    profile(prime_divide.primes(), 1)
 
 if __name__ == "__main__":
     main()
