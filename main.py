@@ -38,8 +38,8 @@ def profile(pg, check):
 def main():
     pass
 
-    timeitall(prime_divide.primes(), 10000, "Divide")
-    profile(prime_divide.primes(), 1)
+    #timeitall(prime_divide.primes(), 10000, "Divide")
+    profile(prime_divide.primes(), 10000)
 
 if __name__ == "__main__":
     main()
