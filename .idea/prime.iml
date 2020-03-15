@@ -8,9 +8,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PackageRequirementsSettings">
-    <option name="requirementsPath" value="" />
-  </component>
-  <component name="PyDocumentationSettings">
-    <option name="analyzeDoctest" value="false" />
+    <option name="requirementsPath" value="$MODULE_DIR$" />
   </component>
 </module>

@@ -1,10 +1,3 @@
-# Tests:
-#    Divide
-#    Masks
-#    Container
-#    Priority queue
-#
-
 import time
 import itertools
 import cProfile
