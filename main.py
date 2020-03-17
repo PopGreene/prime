@@ -1,3 +1,4 @@
+import sys
 import time
 import itertools
 import cProfile
@@ -5,6 +6,8 @@ import pstats
 import io
 
 import prime_divide
+import prime_pq
+import wheel
 
 with open("P-1000000.txt", "r") as f:
     table = [int(l.split(", ")[1]) for l in f]
@@ -15,6 +18,7 @@ def timeitall(pg, check, legend):
     stop = time.time_ns()
     assert last == table[check-1]
     print(round((stop-start) / 1_000_000_000, 3), legend)
+    sys.stdout.flush()
     return stop-start
 
 def profile(pg, check):
@@ -29,10 +33,16 @@ def profile(pg, check):
     assert last == table[check-1]
 
 def main():
-    pass
-
     #timeitall(prime_divide.primes(), 10000, "Divide")
-    profile(prime_divide.primes(), 10000)
+    #timeitall(prime_pq.sieve(itertools.count(2)), 10000, "Priority Queue")
+    timeitall(itertools.chain([2, 3, 5, 7],
+                              prime_pq.sieve(wheel.wheel([2, 3, 5, 7]))),
+                                             10000, "Priority Queue")
+    #for p in itertools.islice(prime_pq.sieve(itertools.count(2)), 10):
+    #    print(p)
+
+
+    #profile(prime_divide.primes(), 10000)
 
 if __name__ == "__main__":
     main()
