@@ -7,7 +7,10 @@ import io
 
 import prime_divide
 import prime_pq
+import prime_heapq
 import wheel
+
+wheelie = [ 2, 3, 5, 7 ]
 
 with open("P-1000000.txt", "r") as f:
     table = [int(l.split(", ")[1]) for l in f]
@@ -35,10 +38,14 @@ def profile(pg, check):
 def main():
     #timeitall(prime_divide.primes(), 10000, "Divide")
     #timeitall(prime_pq.sieve(itertools.count(2)), 10000, "Priority Queue")
-    timeitall(itertools.chain([2, 3, 5, 7],
-                              prime_pq.sieve(wheel.wheel([2, 3, 5, 7]))),
-                                             10000, "Priority Queue")
-    #for p in itertools.islice(prime_pq.sieve(itertools.count(2)), 10):
+    #timeitall(prime_heapq.sieve(itertools.count(2)), 10000, "Heap")
+    #timeitall(itertools.chain(wheelie,
+    #                          prime_pq.sieve(wheel.wheel(wheelie))),
+    #                                         10000, "Prority Queue Wheel")
+    timeitall(itertools.chain(wheelie,
+                              prime_heapq.sieve(wheel.wheel(wheelie))),
+                                                1000000, "Heap Wheel")
+    #for p in itertools.islice(prime_heap.sieve(itertools.count(2)), 10):
     #    print(p)
 
 
