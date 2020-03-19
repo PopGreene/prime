@@ -36,15 +36,15 @@ def profile(pg, check):
     assert last == table[check-1]
 
 def main():
-    #timeitall(prime_divide.primes(), 10000, "Divide")
-    #timeitall(prime_pq.sieve(itertools.count(2)), 10000, "Priority Queue")
-    #timeitall(prime_heapq.sieve(itertools.count(2)), 10000, "Heap")
-    #timeitall(itertools.chain(wheelie,
-    #                          prime_pq.sieve(wheel.wheel(wheelie))),
-    #                                         10000, "Prority Queue Wheel")
+    timeitall(prime_divide.primes(), 10000, "Divide")
+    timeitall(prime_pq.sieve(itertools.count(2)), 10000, "Priority Queue")
+    timeitall(prime_heapq.sieve(itertools.count(2)), 10000, "Heap")
+    timeitall(itertools.chain(wheelie,
+                              prime_pq.sieve(wheel.wheel(wheelie))),
+                                             10000, "Prority Queue Wheel")
     timeitall(itertools.chain(wheelie,
                               prime_heapq.sieve(wheel.wheel(wheelie))),
-                                                1000000, "Heap Wheel")
+                                                10000, "Heap Wheel")
     #for p in itertools.islice(prime_heap.sieve(itertools.count(2)), 10):
     #    print(p)
 

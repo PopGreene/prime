@@ -18,20 +18,3 @@ def wheel(pl):
         for step in steps:
             nextp += step
             yield nextp
-
-def addWheel(p, wh=None):
-    if not wh:
-        return [p]
-    new_wheel = []
-    wa = 0
-    wv = 1
-    pv = p
-    for v in wh * p:
-        wv += v
-        wa += v
-        while pv < wv:
-            pv += p
-        if pv != wv:
-            new_wheel.append(wa)
-            wa = 0
-    return new_wheel

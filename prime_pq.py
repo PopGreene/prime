@@ -1,26 +1,15 @@
-import sys
-import itertools
 import pqdict
 
 def sieve(ng):
-    try:
-        x = next(ng)
-    except KeyError:
-        return
-
-    g = itertools.count(x*x,x)
-    pq = pqdict.pqdict({x:(next(g),g)}, key=lambda x:x[0])
+    x = next(ng)
+    pq = pqdict.pqdict({x:x*x})
     yield x
 
     for x in ng:
-        p, (c, g) = pq.topitem()
+        p, c = pq.topitem()
         while x > c:
-            pq.updateitem(p, (next(g),g))
-            p, (c, g) = pq.topitem()
+            pq.updateitem(p, c+p)
+            p, c = pq.topitem()
         if x != c:
-            #print("Prime:", x)
-            #sys.stdout.flush()
-            assert x < c, f"{x} {c}"
-            g = itertools.count(x*x,x)
-            pq[x] = (next(g), g)
+            pq[x] = x*x
             yield x
