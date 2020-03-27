@@ -15,7 +15,7 @@ wheelie = [ 2, 3, 5, 7 ]
 with open("P-1000000.txt", "r") as f:
     table = [int(l.split(", ")[1]) for l in f]
 
-def timeitall(pg, check, legend):
+def timeitgen(pg, check, legend):
     start = time.time_ns()
     last = next(itertools.islice(pg, check-1, check))
     stop = time.time_ns()
@@ -24,25 +24,25 @@ def timeitall(pg, check, legend):
     sys.stdout.flush()
     return stop-start
 
-def profile(pg, check):
-    pr = cProfile.Profile()
-    pr.enable()
-    last = next(itertools.islice(pg, check-1, check))
-    pr.disable()
-    s = io.StringIO()
-    ps = pstats.Stats(pr, stream=s).sort_stats(pstats.SortKey.CUMULATIVE)
-    ps.print_stats()
-    print(s.getvalue())
-    assert last == table[check-1]
+# def profile(pg, check):
+#     pr = cProfile.Profile()
+#     pr.enable()
+#     last = next(itertools.islice(pg, check-1, check))
+#     pr.disable()
+#     s = io.StringIO()
+#     ps = pstats.Stats(pr, stream=s).sort_stats(pstats.SortKey.CUMULATIVE)
+#     ps.print_stats()
+#     print(s.getvalue())
+#     assert last == table[check-1]
 
 def main():
-    timeitall(prime_divide.primes(), 10000, "Divide")
-    timeitall(prime_pq.sieve(itertools.count(2)), 10000, "Priority Queue")
-    timeitall(prime_heapq.sieve(itertools.count(2)), 10000, "Heap")
-    timeitall(itertools.chain(wheelie,
+    timeitgen(prime_divide.primes(), 10000, "Divide")
+    timeitgen(prime_pq.sieve(itertools.count(2)), 10000, "Priority Queue")
+    timeitgen(prime_heapq.sieve(itertools.count(2)), 10000, "Heap")
+    timeitgen(itertools.chain(wheelie,
                               prime_pq.sieve(wheel.wheel(wheelie))),
                                              10000, "Prority Queue Wheel")
-    timeitall(itertools.chain(wheelie,
+    timeitgen(itertools.chain(wheelie,
                               prime_heapq.sieve(wheel.wheel(wheelie))),
                                                 10000, "Heap Wheel")
     #for p in itertools.islice(prime_heap.sieve(itertools.count(2)), 10):
