@@ -47,8 +47,6 @@ def main():
                                                 10000, "Heap Wheel")
     #for p in itertools.islice(prime_heap.sieve(itertools.count(2)), 10):
     #    print(p)
-
-
     #profile(prime_divide.primes(), 10000)
 
 if __name__ == "__main__":
